@@ -6,11 +6,16 @@ import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import  Search from "./_components/search";
+import  Search from "./HOME/_components/search";
+import BarbershopItem from "./HOME/_components/barbershop-item";
+import { db } from "./_lib/prisma";
 
 //npm run dev
 
-const Home = () => {
+export default async function Home() {
+
+  const barbershops = db.barbershop.findMany({})
+
   return  (
     <div>
       <Header />
@@ -31,9 +36,16 @@ const Home = () => {
           <BookingItem />
         </div>
 
+        <div className="mt-6">
+          <h2 className="text-xs mb-3 uppercase text-gray-400 font-bold px-5">Recomendados</h2>
+
+          <div className="px-5 flex gap-2 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+            {(await barbershops).map((barbershop) => (
+              <BarbershopItem key={barbershop.id} barbershop={barbershop}/>
+            ))}
+          </div>
+        </div>
     </div>
 
-  ) 
+  );
 }
-
-export default Home;

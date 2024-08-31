@@ -8,11 +8,11 @@ const BookingItem = () => {
     return ( 
         <Card>
             <CardContent className="p-5 flex justify-between py-0">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 py-2">
                     <Badge className="bg-[#221C3D] text-primary hover:bg-[#221C3D] w-fit">
                         Confirmado
                     </Badge>
-                    <h2>
+                    <h2 className="font-bold">
                         Nome do corte
                     </h2>
                     <div className="flex items-center gap-2">
